@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce using fetch</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="wrapper">
+        <div id="products"></div>
+    </div>
+
+    <script>
+        fetch("https://dummyjson.com/products")
+        .then((response)=>{return response.json()})
+        .then((showresult)=>{console.log(showresult);
+        show(showresult.products)})
+
+        function show (data) {
+            for(let i =0 ; i< data.length; i++){
+                // console.log(data)
+
+                const newdiv=document.createElement("div");
+                newdiv.setAttribute("class", "innerdiv");
+                document.querySelector("#products").append(newdiv);
+
+
+
+            const image=document.createElement("img");
+            image.src=data[i].images[0]; 
+            document.querySelector(".innerdiv").append(image);
+
+
+            const heading=document.createElement("h1");
+            heading.innerHTML=data[i].brand;
+            document.querySelector(".innerdiv").append(heading)
+            
+
+            const category=document.createElement("h3");
+            category.innerHTML=data[i].category;
+            document.querySelector(".innerdiv").append(category);
+
+
+            const descrip=document.createElement("h4");
+            descrip.innerHTML=data[i].description;
+            document.querySelector(".innerdiv").append(descrip);
+
+
+
+            const price=document.createElement("h5");
+            price.innerHTML=data[i].price;
+            document.querySelector(".innerdiv").append(price);
+
+
+            const title=document.createElement("h6");
+            title.innerHTML=data[i].title;
+            document.querySelector(".innerdiv").append(title);
+
+            }
+        }
+
+      
+    </script>
+</body>
+</html>
